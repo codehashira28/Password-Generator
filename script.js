@@ -13,7 +13,7 @@ function generatePassword() {
   // logic for initial prompt asking for number of characters for password
 
   var numChars = prompt('Please enter a password length between 8 and 128 characters.');
-  while(numChars < 8 || numChars > 128) {
+  while((numChars < 8 || numChars > 128) && numChars != null) {
     numChars = prompt('Please enter a password length between 8 and 128 characters.');
   }
 
