@@ -13,12 +13,13 @@ function generatePassword() {
 
   // logic for initial prompt asking for number of characters for password
 
-  var numChars = prompt('How many characters do you want your password to be? (Must be between 8-128 characters long)');
+  var numChars = prompt('How many characters do you want your password to be? (Must be a whole number length between 8-128 characters long)');
 
-  // conditions to handle unexpected inputs (strings, decimals, and numbers outside the range)
+  // logic to return empty string if input is invalid (i.e. strings, decimals, and numbers outside the range)
 
-  while(((numChars < 8 || numChars > 128) && numChars != null) || (Math.floor(numChars) != numChars && numChars != null) || (isNaN(parseInt(numChars))) && numChars != null) { 
-    numChars = prompt('Please enter a whole number length between 8 and 128 characters.');
+  if(((numChars < 8 || numChars > 128) && numChars != null) || (Math.floor(numChars) != numChars && numChars != null) || (isNaN(parseInt(numChars))) && numChars != null) { 
+    alert('Invalid input\nPlease try again!');
+    return "";
   }
 
   // if no valid length is entered and prompt is cancelled, return an empty string,
