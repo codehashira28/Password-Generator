@@ -36,7 +36,6 @@ function generatePassword() {
     var wantUppercase = confirm("Include uppercase letters?");
     var wantNumerics = confirm("Include numbers?");
     var wantSpecialChars = confirm("Include special characters?");
-    numChars = parseInt(numChars);
 
     var password = "";
   
@@ -73,7 +72,7 @@ function generatePassword() {
         break;
       }
     }
-      return password + '\nPassword length: ' + password.length;
+      return password;
   }
 }
 
