@@ -1,7 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// function to add a character to the password
 
+function addCharacter(password, characters) {
+  password += characters[Math.floor(Math.random() * characters.length)];
+  return password;
+}
+
+// function to check the generated password length to see if it matches the user's specified length before adding a new character
+
+function checkLength(password, size) {
+  return password.length === size;
+}
 
 function generatePassword() {
   // Declaration of acceptable character variables
@@ -23,7 +34,7 @@ function generatePassword() {
     numChars = Number(numChars);
   }
 
-  // check for invalid inputs i.e. words (NaN), decimals (not a whole number), or numbers outside of range. If invalid, alert and return empty string.
+  // check for invalid inputs i.e. words (Number(word) will return NaN), decimals (not a whole number), or numbers outside of range. If invalid, alert and return empty string.
   // if valid input, generate password based on criteria to be selected.
 
 
@@ -38,34 +49,35 @@ function generatePassword() {
     var wantSpecialChars = confirm("Include special characters?");
 
     var password = "";
+
+    // loop to build password based on selected criteria. Password length will be checked at each stage before adding a new character.
+    // Once the password lengths equals the required length, break the loop and return the password.
+    // If no criteria is select, break and return an empty string.
   
     while(password.length < numChars) {
-      if(wantLowercase) {
-        if(password.length === numChars) {
-          break;
-        }
-        password += lowercase[Math.floor(Math.random() * lowercase.length)];
-      }
 
-      if(wantUppercase) {
-        if(password.length === numChars) {
-          break;
-        }
-        password += uppercase[Math.floor(Math.random() * uppercase.length)];
+      if(checkLength(password, numChars)) {
+        break;
+      } else {
+        wantLowercase ? password = addCharacter(password, lowercase) : password;
       }
-
-      if(wantNumerics) {
-        if(password.length === numChars) {
-          break;
-        }
-        password += numbers[Math.floor(Math.random() * numbers.length)];
+  
+      if(checkLength(password, numChars)) {
+        break;
+      } else {
+        wantUppercase ? password = addCharacter(password, uppercase) : password;
       }
-
-      if(wantSpecialChars) {
-        if(password.length === numChars) {
-          break;
-        }
-        password += specialChars[Math.floor(Math.random() * specialChars.length)];
+  
+      if(checkLength(password, numChars)) {
+        break;
+      } else {
+        wantNumerics ? password = addCharacter(password, numbers) : password;
+      }
+  
+      if(checkLength(password, numChars)) {
+        break;
+      } else {
+        wantSpecialChars ? password = addCharacter(password, specialChars) : password;
       }
 
       if(!wantLowercase && !wantUppercase && !wantSpecialChars && !wantNumerics) {
@@ -75,7 +87,6 @@ function generatePassword() {
       return password;
   }
 }
-
 
 // Write password to the #password input
 function writePassword() {
