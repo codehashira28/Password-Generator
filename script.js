@@ -81,6 +81,7 @@ function generatePassword() {
       }
 
       if(!wantLowercase && !wantUppercase && !wantSpecialChars && !wantNumerics) {
+        alert('Please select at least one criteria to generate password.');
         break;
       }
     }
